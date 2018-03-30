@@ -9,6 +9,7 @@ const MapContainer = ({ google }) => (
 );
 
 const GMap = GoogleApiWrapper({
+  apiKey: process.env.REACT_APP_GMPAS_API_KEY,
 })(MapContainer)
 
 
