@@ -9,7 +9,6 @@ const MapContainer = ({ google }) => (
 );
 
 const GMap = GoogleApiWrapper({
-  apiKey: "AIzaSyDzQLZ2xxOvyRoozoy-pFaNy_JOalqQKnA",
 })(MapContainer)
 
 
