@@ -1,11 +1,9 @@
 import React from 'react';
-import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
+import { Map, GoogleApiWrapper } from 'google-maps-react';
 
 
 const MapContainer = ({ google }) => (
-  <Map google={google} zoom={14}>
-
-  </Map>
+  <Map google={google} zoom={14} />
 );
 
 const GMap = GoogleApiWrapper({
