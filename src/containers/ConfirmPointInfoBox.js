@@ -5,16 +5,17 @@ import { ConfirmPointInfoBoxC } from '../components/ConfirmPointInfoBox';
 import {
   withAppState,
   setSelectedPointCoords,
-  setRoute,
+  setPage,
 } from '../appState';
 import { renderNothingIf } from '../utils/hocs';
-import { routes } from '../utils/constants';
+import { pages } from '../utils/constants';
+import { fromLatLng } from '../utils/coords';
 
 
 export const ConfirmPointInfoBox = compose(
   withAppState(
     R.pick(['selectedPointCoords']),
-    { setSelectedPointCoords, setRoute }
+    { setSelectedPointCoords, setPage }
   ),
   renderNothingIf(
     R.complement(R.path(['selectedPointCoords', 'lat'])),
@@ -23,7 +24,8 @@ export const ConfirmPointInfoBox = compose(
     ({ selectedPointCoords, actions }) => ({
       position: selectedPointCoords,
       onCancel: () => actions.setSelectedPointCoords({}),
-      onConfirm: () => actions.setRoute(routes.images),
+      onConfirm: () =>
+        actions.setPage(pages.images, fromLatLng(selectedPointCoords)),
     })
   )
 )(ConfirmPointInfoBoxC);

@@ -4,21 +4,21 @@ import { shouldUpdate, compose } from 'recompose';
 
 import { Map } from './containers/Map';
 import { withAppState } from './appState';
-import { routes } from './utils/constants';
+import { pages } from './utils/constants';
 
-const { map, images } = routes;
+const { map, images } = pages;
 
-const routesPages = {
+const pagesComponents = {
   [map]: <Map />,
   [images]: <h1>Hello</h1>,
 };
 
 export const Pages = compose(
-  withAppState(R.pick(['currentRoute'])),
+  withAppState(R.pick(['currentPage'])),
   shouldUpdate(
-    ({ currentRoute }, nextProps) =>
-      currentRoute !== nextProps.currentRoute,
+    ({ currentPage }, nextProps) =>
+      currentPage !== nextProps.currentPage,
   ),
 )(
-  ({ currentRoute }) => routesPages[currentRoute],
+  ({ currentPage }) => pagesComponents[currentPage],
 );

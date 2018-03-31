@@ -1,4 +1,4 @@
-export const routes = {
-  map: '/map',
-  images: '/images',
+export const pages = {
+  map: 'map',
+  images: 'images',
 };

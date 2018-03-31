@@ -1,5 +1,13 @@
+import { stringify } from 'query-string';
+
 export const setSelectedPointCoords = state => selectedPointCoords =>
   ({ ...state, selectedPointCoords });
 
-export const setRoute = state => route =>
-  ({ ...state, currentRoute: route });
+export const setPage = state => (page, params) => {
+  window.location.hash = stringify({
+    page,
+    ...params,
+  });
+
+  return { ...state, currentPage: page };
+};

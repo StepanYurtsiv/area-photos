@@ -3,14 +3,24 @@ import React from 'react';
 import * as R from 'ramda';
 
 import { withState, withProps, compose } from 'recompose';
-import { getDefaultState } from './defaultState';
+import { getStateFromHash } from './defaultState';
+import { callOn } from '../utils/hocs';
+
 
 export * from './updaters';
 
 const AppStateContext = React.createContext({});
 
 export const AppStateProvider = compose(
-  withState('state', 'setState', getDefaultState()),
+  withState('state', 'setState', getStateFromHash(window.location.hash)),
+  callOn('componentDidMount', ({ state, setState }) => {
+    window.onhashchange = () => {
+      setState({
+        ...state,
+        ...getStateFromHash(window.location.hash),
+      });
+    };
+  }),
   withProps(R.objOf('value')),
 )(AppStateContext.Provider);
 

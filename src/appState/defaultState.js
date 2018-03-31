@@ -1,7 +1,15 @@
-import { routes } from '../utils/constants';
+import * as R from 'ramda';
+import { parse } from 'query-string';
+
+import { pages } from '../utils/constants';
+import { toLatLng } from '../utils/coords';
 
 
-export const getDefaultState = () => ({
-  currentRoute: routes.map,
-  selectedPointCoords: {},
-});
+export const getStateFromHash = R.pipe(
+  parse,
+  ({ page, lat, lng }) => ({
+    currentPage: pages[page] ? page : pages.map,
+    selectedPointCoords: lat && lng ?
+      toLatLng(window)(lat, lng) : {},
+  }),
+);
