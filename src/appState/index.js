@@ -3,18 +3,17 @@ import React from 'react';
 import * as R from 'ramda';
 
 import { withState, withProps, compose } from 'recompose';
+import { getDefaultState } from './defaultState';
 
 export * from './updaters';
 
 const AppStateContext = React.createContext({});
 
 export const AppStateProvider = compose(
-  withState('state', 'setState', {
-    currentRoute: 'map',
-    selectedPointCoords: {},
-  }),
+  withState('state', 'setState', getDefaultState()),
   withProps(R.objOf('value')),
 )(AppStateContext.Provider);
+
 
 const generateActions = (state, setState) => R.mapObjIndexed(
   func => (...args) => setState(func(state)(...args)),

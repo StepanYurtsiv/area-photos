@@ -8,6 +8,7 @@ import {
   setRoute,
 } from '../appState';
 import { renderNothingIf } from '../utils/hocs';
+import { routes } from '../utils/constants';
 
 
 export const ConfirmPointInfoBox = compose(
@@ -22,7 +23,7 @@ export const ConfirmPointInfoBox = compose(
     ({ selectedPointCoords, actions }) => ({
       position: selectedPointCoords,
       onCancel: () => actions.setSelectedPointCoords({}),
-      onConfirm: () => actions.setRoute('images'),
+      onConfirm: () => actions.setRoute(routes.images),
     })
   )
 )(ConfirmPointInfoBoxC);

@@ -11,7 +11,7 @@ export const ConfirmPointInfoBoxC = ({
 }) => (
   <InfoBox
     onCloseClick={onCancel}
-    defaultPosition={position}
+    position={position}
     options={{ enableEventPropagation: true }}
   >
     <div className="info-box-container">
