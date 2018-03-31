@@ -8,12 +8,8 @@ import {
   setSelectedPointCoords,
 } from '../appState';
 import { ConfirmPointInfoBox } from './ConfirmPointInfoBox';
+import { googleMapURL } from '../utils/constants';
 
-const getGMapsURL = apiKey =>
-  `https://maps.googleapis.com/maps/api/js?key=${apiKey}&v=3.exp`;
-
-
-const { REACT_APP_GMPAS_API_KEY } = process.env;
 
 export const Map = R.compose(
   withAppState(
@@ -24,7 +20,7 @@ export const Map = R.compose(
     ({ actions }) => ({
       defaultZoom: 2,
       defaultCenter: { lat: 0, lng: 0 },
-      googleMapURL: getGMapsURL(REACT_APP_GMPAS_API_KEY),
+      googleMapURL,
       loadingElement: <div style={{ height: '100%' }} />,
       containerElement: <div style={{ height: '400px' }} />,
       mapElement: <div style={{ height: '100vh' }} />,
