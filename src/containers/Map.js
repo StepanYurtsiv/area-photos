@@ -4,6 +4,8 @@ import { withProps } from 'recompose';
 
 
 import { GoogleMap, withScriptjs, withGoogleMap } from 'react-google-maps';
+import { withAppState } from './AppState';
+import { ConfirmPointInfoBox } from './ConfirmPointInfoBox';
 
 
 const getGMapsURL = apiKey =>
@@ -13,14 +15,26 @@ const getGMapsURL = apiKey =>
 const { REACT_APP_GMPAS_API_KEY } = process.env;
 
 export const Map = compose(
-  withProps({
-    defaultZoom: 3,
-    center: { lat: 25.03, lng: 121.6 },
-    googleMapURL: getGMapsURL(REACT_APP_GMPAS_API_KEY),
-    loadingElement: <div style={{ height: '100%' }} />,
-    containerElement: <div style={{ height: '400px' }} />,
-    mapElement: <div style={{ height: '100vh' }} />,
-  }),
+  withAppState(['coords']),
+  withProps(
+    ({ actions }) => ({
+      defaultZoom: 2,
+      defaultCenter: { lat: 0, lng: 0 },
+      googleMapURL: getGMapsURL(REACT_APP_GMPAS_API_KEY),
+      loadingElement: <div style={{ height: '100%' }} />,
+      containerElement: <div style={{ height: '400px' }} />,
+      mapElement: <div style={{ height: '100vh' }} />,
+      onClick: ({ latLng }) => {
+        actions.coords.setCoords(
+          latLng
+        );
+      },
+    }),
+  ),
   withScriptjs,
   withGoogleMap,
-)(GoogleMap);
+)(props => (
+  <GoogleMap {...props}>
+    <ConfirmPointInfoBox />
+  </GoogleMap>
+));

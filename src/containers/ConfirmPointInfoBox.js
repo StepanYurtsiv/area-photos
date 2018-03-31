@@ -7,8 +7,14 @@ import { withAppState } from './AppState';
 export const ConfirmPointInfoBox = compose(
   withAppState(['coords']),
   branch(
-    R.complement(R.path(['state', 'coords'])),
+    R.complement(R.path(['state', 'coords', 'lat'])),
     renderNothing,
   ),
-  mapProps((props) => {debugger})
+  mapProps(
+    ({ state: { coords }, actions }) => ({
+      position: coords,
+      onCancel: () => actions.coords.setCoords({}),
+      onConfirm: () => alert('Redirect'),
+    })
+  )
 )(ConfirmPointInfoBoxC);
