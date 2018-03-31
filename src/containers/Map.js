@@ -1,12 +1,13 @@
 import React from 'react';
-import { compose } from 'ramda';
-import { withProps } from 'recompose';
-
+import * as R from 'ramda';
+import { mapProps } from 'recompose';
 
 import { GoogleMap, withScriptjs, withGoogleMap } from 'react-google-maps';
-import { withAppState } from './AppState';
+import {
+  withAppState,
+  setSelectedPointCoords,
+} from '../appState';
 import { ConfirmPointInfoBox } from './ConfirmPointInfoBox';
-
 
 const getGMapsURL = apiKey =>
   `https://maps.googleapis.com/maps/api/js?key=${apiKey}&v=3.exp`;
@@ -14,9 +15,12 @@ const getGMapsURL = apiKey =>
 
 const { REACT_APP_GMPAS_API_KEY } = process.env;
 
-export const Map = compose(
-  withAppState(['coords']),
-  withProps(
+export const Map = R.compose(
+  withAppState(
+    R.pick(['selectedPointCoords']),
+    { setSelectedPointCoords }
+  ),
+  mapProps(
     ({ actions }) => ({
       defaultZoom: 2,
       defaultCenter: { lat: 0, lng: 0 },
@@ -24,11 +28,10 @@ export const Map = compose(
       loadingElement: <div style={{ height: '100%' }} />,
       containerElement: <div style={{ height: '400px' }} />,
       mapElement: <div style={{ height: '100vh' }} />,
-      onClick: ({ latLng }) => {
-        actions.coords.setCoords(
-          latLng
-        );
-      },
+      onClick: R.pipe(
+        R.prop('latLng'),
+        actions.setSelectedPointCoords,
+      ),
     }),
   ),
   withScriptjs,

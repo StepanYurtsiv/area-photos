@@ -1,20 +1,28 @@
 import * as R from 'ramda';
-import { compose, branch, renderNothing, mapProps } from 'recompose';
+import { compose, mapProps } from 'recompose';
 
 import { ConfirmPointInfoBoxC } from '../components/ConfirmPointInfoBox';
-import { withAppState } from './AppState';
+import {
+  withAppState,
+  setSelectedPointCoords,
+  setRoute,
+} from '../appState';
+import { renderNothingIf } from '../utils/hocs';
+
 
 export const ConfirmPointInfoBox = compose(
-  withAppState(['coords', 'currentRoute']),
-  branch(
-    R.complement(R.path(['state', 'coords', 'lat'])),
-    renderNothing,
+  withAppState(
+    R.pick(['selectedPointCoords']),
+    { setSelectedPointCoords, setRoute }
+  ),
+  renderNothingIf(
+    R.complement(R.path(['selectedPointCoords', 'lat'])),
   ),
   mapProps(
-    ({ state: { coords }, actions }) => ({
-      position: coords,
-      onCancel: () => actions.coords.setCoords({}),
-      onConfirm: () => actions.currentRoute.setRoute('images'),
+    ({ selectedPointCoords, actions }) => ({
+      position: selectedPointCoords,
+      onCancel: () => actions.setSelectedPointCoords({}),
+      onConfirm: () => actions.setRoute('images'),
     })
   )
 )(ConfirmPointInfoBoxC);
