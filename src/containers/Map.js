@@ -5,6 +5,7 @@ import { withProps } from 'recompose';
 
 import { GoogleMap, withScriptjs, withGoogleMap } from 'react-google-maps';
 
+
 const getGMapsURL = apiKey =>
   `https://maps.googleapis.com/maps/api/js?key=${apiKey}&v=3.exp`;
 
