@@ -3,6 +3,7 @@ import React from 'react';
 import { shouldUpdate, compose } from 'recompose';
 
 import { Map } from './containers/Map';
+import { AreaPhoto } from './containers/AreaPhoto';
 import { withAppState } from './appState';
 import { pages } from './utils/constants';
 
@@ -10,7 +11,7 @@ const { map, images } = pages;
 
 const pagesComponents = {
   [map]: <Map />,
-  [images]: <h1>Hello</h1>,
+  [images]: <AreaPhoto />,
 };
 
 export const Pages = compose(
