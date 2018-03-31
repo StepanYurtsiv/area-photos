@@ -7,7 +7,9 @@ import { withState, compose, withProps } from 'recompose';
 const AppStateContext = React.createContext({});
 
 export const AppStateProvider = compose(
-  withState('state', 'setState', {}),
+  withState('state', 'setState', {
+    currentRoute: 'map',
+  }),
   withProps(
     ({ state, setState }) => ({
       value: {
@@ -15,6 +17,9 @@ export const AppStateProvider = compose(
         handlers: {
           coords: {
             setCoords: coords => setState({ ...state, coords }),
+          },
+          currentRoute: {
+            setRoute: currentRoute => setState({ ...state, currentRoute }),
           },
         },
       },

@@ -5,7 +5,7 @@ import { ConfirmPointInfoBoxC } from '../components/ConfirmPointInfoBox';
 import { withAppState } from './AppState';
 
 export const ConfirmPointInfoBox = compose(
-  withAppState(['coords']),
+  withAppState(['coords', 'currentRoute']),
   branch(
     R.complement(R.path(['state', 'coords', 'lat'])),
     renderNothing,
@@ -14,7 +14,7 @@ export const ConfirmPointInfoBox = compose(
     ({ state: { coords }, actions }) => ({
       position: coords,
       onCancel: () => actions.coords.setCoords({}),
-      onConfirm: () => alert('Redirect'),
+      onConfirm: () => actions.currentRoute.setRoute('images'),
     })
   )
 )(ConfirmPointInfoBoxC);
