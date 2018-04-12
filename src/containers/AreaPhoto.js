@@ -3,7 +3,7 @@ import * as R from 'ramda';
 import { compose, withState } from 'recompose';
 
 import { withAppState } from '../appState';
-import { callOn, renderNothingIf } from '../utils/hocs';
+import { callOn } from '../utils/hocs';
 import { fromLatLng } from '../utils/coords';
 import { fetchImage } from '../utils/nasaApi';
 
@@ -13,11 +13,18 @@ export const AreaPhoto = compose(
     R.pick(['selectedPointCoords']),
   ),
   withState('imageUrl', 'setImageURL', ''),
-  callOn('componentDidMount', ({ selectedPointCoords, setImageURL }) => {
-    fetchImage(fromLatLng(selectedPointCoords))
-      .then(res => res.json())
-      .then(({ url }) => setImageURL(url));
-  }),
+  callOn('componentDidMount', ({ selectedPointCoords, setImageURL }) =>
+    R.pipe(
+      fromLatLng,
+      ({ lat, lng }) =>
+        fetchImage({
+          lat,
+          lon: lng,
+          dim: 0.3,
+        })
+          .then(({ url }) => setImageURL(url))
+    )(selectedPointCoords),
+  ),
 )(({ imageUrl = '' }) =>
   <img alt="" src={imageUrl} />
 );
