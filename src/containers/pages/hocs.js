@@ -16,7 +16,7 @@ export const withFetchAvailableAssets = R.compose(
     'componentDidMount',
     ({
       selectedPointCoords,
-      ...actions
+      actions,
     }) =>
       R.pipe(
         fromLatLng,
