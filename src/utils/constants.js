@@ -10,3 +10,4 @@ export const googleMapURL =
 
 export const nasaAPIKey = REACT_APP_NASA_API_KEY;
 export const nasaImageryBaseURL = 'https://api.nasa.gov/planetary/earth/imagery';
+export const nasaAssetsBaseURL = 'https://api.nasa.gov/planetary/earth/assets';

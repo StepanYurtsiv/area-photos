@@ -6,14 +6,14 @@ import { GoogleMap, withScriptjs, withGoogleMap } from 'react-google-maps';
 import {
   withAppState,
   setSelectedPointCoords,
-} from '../appState';
-import { ConfirmPointInfoBox } from './ConfirmPointInfoBox';
-import { googleMapURL } from '../utils/constants';
+} from '../../appState';
+import { googleMapURL } from '../../utils/constants';
+import { ConfirmPointInfoBox } from '../ConfirmPointInfoBox';
 
 
-export const Map = R.compose(
+export const MapPage = R.compose(
   withAppState(
-    R.pick(['selectedPointCoords']),
+    () => {},
     { setSelectedPointCoords }
   ),
   mapProps(
@@ -37,3 +37,4 @@ export const Map = R.compose(
     <ConfirmPointInfoBox />
   </GoogleMap>
 ));
+

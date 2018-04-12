@@ -8,7 +8,7 @@ import { fromLatLng } from '../utils/coords';
 import { fetchImage } from '../utils/nasaApi';
 
 
-export const AreaPhoto = compose(
+export const CurrentPhoto = compose(
   withAppState(
     R.pick(['selectedPointCoords']),
   ),

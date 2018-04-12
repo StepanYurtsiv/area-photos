@@ -11,3 +11,6 @@ export const setPage = state => (page, params) => {
 
   return { ...state, currentPage: page };
 };
+
+export const setAvailableImgDates = state => availableImageDates =>
+  ({ ...state, availableImageDates });
