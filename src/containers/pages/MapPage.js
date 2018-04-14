@@ -33,4 +33,3 @@ export const MapPage = R.compose(
     <ConfirmPointInfoBox />
   </GoogleMap>
 ));
-

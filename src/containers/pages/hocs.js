@@ -1,6 +1,6 @@
 import * as R from 'ramda';
 
-import { withAppState, setAvailableImgDates } from '../../appState';
+import { withAppState, setAvailableAssets } from '../../appState';
 
 import { callOn } from '../../utils/hocs';
 import { fetchAvailableAssets } from '../../utils/nasaApi';
@@ -10,7 +10,7 @@ import { fromLatLng } from '../../utils/coords';
 export const withFetchAvailableAssets = R.compose(
   withAppState(
     R.pick(['selectedPointCoords']),
-    { setAvailableImgDates }
+    { setAvailableAssets }
   ),
   callOn(
     'componentDidMount',
@@ -28,11 +28,13 @@ export const withFetchAvailableAssets = R.compose(
             .then(
               R.pipe(
                 R.prop('results'),
-                R.map(R.prop('date')),
-                actions.setAvailableImgDates,
+                R.map(
+                  R.evolve({ date: date => new Date(date) }),
+                ),
+                R.take(10),
+                actions.setAvailableAssets,
               )
             )
       )(selectedPointCoords),
   )
 );
-
