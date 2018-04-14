@@ -10,6 +10,6 @@ export const getStateFromHash = R.pipe(
   ({ page, lat, lng }) => ({
     currentPage: pages[page] ? page : pages.map,
     selectedPointCoords: lat && lng ?
-      toLatLng(window)(lat, lng) : {},
-  }),
+      toLatLng(window)(+lat, +lng) : {},
+  })
 );

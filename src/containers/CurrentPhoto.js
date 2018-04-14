@@ -20,7 +20,7 @@ export const CurrentPhoto = compose(
         fetchImage({
           lat,
           lon: lng,
-          dim: 0.3,
+          dim: 0.09,
         })
           .then(({ url }) => setImageURL(url))
     )(selectedPointCoords),

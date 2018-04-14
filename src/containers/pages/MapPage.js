@@ -2,12 +2,11 @@ import React from 'react';
 import * as R from 'ramda';
 import { mapProps } from 'recompose';
 
-import { GoogleMap, withScriptjs, withGoogleMap } from 'react-google-maps';
+import { GoogleMap, withGoogleMap } from 'react-google-maps';
 import {
   withAppState,
   setSelectedPointCoords,
 } from '../../appState';
-import { googleMapURL } from '../../utils/constants';
 import { ConfirmPointInfoBox } from '../ConfirmPointInfoBox';
 
 
@@ -20,8 +19,6 @@ export const MapPage = R.compose(
     ({ actions }) => ({
       defaultZoom: 2,
       defaultCenter: { lat: 0, lng: 0 },
-      googleMapURL,
-      loadingElement: <div style={{ height: '100%' }} />,
       containerElement: <div style={{ height: '400px' }} />,
       mapElement: <div style={{ height: '100vh' }} />,
       onClick: R.pipe(
@@ -30,7 +27,6 @@ export const MapPage = R.compose(
       ),
     }),
   ),
-  withScriptjs,
   withGoogleMap,
 )(props => (
   <GoogleMap {...props}>
