@@ -1,6 +1,6 @@
-export const pages = {
-  map: 'map',
-  images: 'images',
+export const routesNames = {
+  MAP: '/',
+  PHOTOS: '/photos',
 };
 
 const { REACT_APP_GMPAS_API_KEY, REACT_APP_NASA_API_KEY } = process.env;

@@ -1,25 +1,27 @@
 import * as R from 'ramda';
+import { connect } from 'react-redux';
 
-import { withAppState, setAvailableAssets } from '../appState';
+import { setPhotos } from '../appState/photos';
 
 import { callOn } from '../utils/hocs';
 import { fetchAvailableAssets } from '../utils/nasaApi';
-import { fromLatLng } from '../utils/coords';
 
 
 export const withFetchAvailableAssets = R.compose(
-  withAppState(
-    R.pick(['selectedPointCoords']),
-    { setAvailableAssets }
+  connect(
+    R.pipe(
+      R.path(['router', 'query']),
+      R.objOf('targetPointCoords'),
+    ),
+    { setPhotos }
   ),
   callOn(
     'componentDidMount',
     ({
-      selectedPointCoords,
-      actions,
+      targetPointCoords,
+      ...actions
     }) =>
       R.pipe(
-        fromLatLng,
         ({ lat, lng }) =>
           fetchAvailableAssets({
             lat,
@@ -31,10 +33,10 @@ export const withFetchAvailableAssets = R.compose(
                 R.map(
                   R.evolve({ date: date => new Date(date) }),
                 ),
-                R.take(10),
-                actions.setAvailableAssets,
+                R.take(20),
+                actions.setPhotos,
               )
             )
-      )(selectedPointCoords),
+      )(targetPointCoords),
   )
 );

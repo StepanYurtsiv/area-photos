@@ -1,17 +1,14 @@
 import * as R from 'ramda';
+import { connect } from 'react-redux';
 
-import {
-  withAppState,
-} from '../../appState';
 import { AllPhotosC } from '../../components/AllPhotos';
-import { fromLatLng } from '../../utils/coords';
 
 
 export const AllPhotos = R.compose(
-  withAppState(
-    R.pipe(
-      R.pick(['photos', 'selectedPointCoords']),
-      R.evolve({ selectedPointCoords: fromLatLng }),
-    )
+  connect(
+    R.pick([
+      'photos',
+      'router',
+    ]),
   ),
 )(AllPhotosC);

@@ -1,22 +1,22 @@
 import React from 'react';
 import * as R from 'ramda';
 import { mapProps } from 'recompose';
+import { connect } from 'react-redux';
 
 import { GoogleMap, withGoogleMap } from 'react-google-maps';
 import {
-  withAppState,
   setSelectedPointCoords,
-} from '../appState';
+} from '../appState/selectedPointCoords';
 import { ConfirmPointInfoBox } from '../containers/ConfirmPointInfoBox';
 
 
 export const MapPage = R.compose(
-  withAppState(
-    () => {},
+  connect(
+    null,
     { setSelectedPointCoords }
   ),
   mapProps(
-    ({ actions }) => ({
+    actions => ({
       defaultZoom: 2,
       defaultCenter: { lat: 0, lng: 0 },
       containerElement: <div style={{ height: '400px' }} />,

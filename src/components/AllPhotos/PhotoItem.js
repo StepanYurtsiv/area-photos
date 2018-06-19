@@ -2,14 +2,18 @@ import React from 'react';
 import { string } from 'prop-types';
 
 
-export const PhotoItemC = ({ imageSrc }) => (
+export const PhotoItemC = ({ url }) => (
   <div className="photo-item-container">
-    {imageSrc ?
-      <img src={imageSrc} alt="item" /> :
+    {url ?
+      <img src={url} alt="item" /> :
       <div className="placeholder">Loading...</div>}
   </div>
 );
 
 PhotoItemC.propTypes = {
-  imageSrc: string.isRequired,
+  url: string,
+};
+
+PhotoItemC.defaultProps = {
+  url: '',
 };
