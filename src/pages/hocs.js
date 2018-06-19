@@ -1,10 +1,10 @@
 import * as R from 'ramda';
 
-import { withAppState, setAvailableAssets } from '../../appState';
+import { withAppState, setAvailableAssets } from '../appState';
 
-import { callOn } from '../../utils/hocs';
-import { fetchAvailableAssets } from '../../utils/nasaApi';
-import { fromLatLng } from '../../utils/coords';
+import { callOn } from '../utils/hocs';
+import { fetchAvailableAssets } from '../utils/nasaApi';
+import { fromLatLng } from '../utils/coords';
 
 
 export const withFetchAvailableAssets = R.compose(

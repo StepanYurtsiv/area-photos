@@ -1,0 +1,17 @@
+.all-photos-container {
+  display: flex;
+  overflow-x: auto;
+  overflow-y: hidden;
+  width: 100%;
+  height: 120px;
+}
+
+.photo-item-container {
+  cursor: pointer;
+}
+
+.photo-item-container .placeholder,
+.photo-item-container img {
+  width: 120px;
+  height: 100%;
+}

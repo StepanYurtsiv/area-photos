@@ -2,10 +2,10 @@ import React from 'react';
 
 import { PhotoItem } from '../../containers/AllPhotos/PhotoItem';
 import { formatDateForURL } from '../../utils/date';
-
+import './styles.css';
 
 export const AllPhotosC = ({ photos = [], selectedPointCoords }) => (
-  <div>
+  <div className="all-photos-container">
     {photos.map(({ date }, i) => (
       <PhotoItem
         key={i}

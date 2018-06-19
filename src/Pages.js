@@ -4,7 +4,7 @@ import { shouldUpdate, compose } from 'recompose';
 
 import { withAppState } from './appState';
 import { pages } from './utils/constants';
-import { MapPage, PhotosPage } from './containers/pages';
+import { MapPage, PhotosPage } from './pages';
 
 
 const { map, images } = pages;

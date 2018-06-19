@@ -6,8 +6,8 @@ import { GoogleMap, withGoogleMap } from 'react-google-maps';
 import {
   withAppState,
   setSelectedPointCoords,
-} from '../../appState';
-import { ConfirmPointInfoBox } from '../ConfirmPointInfoBox';
+} from '../appState';
+import { ConfirmPointInfoBox } from '../containers/ConfirmPointInfoBox';
 
 
 export const MapPage = R.compose(
