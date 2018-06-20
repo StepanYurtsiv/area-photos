@@ -6,9 +6,16 @@ import { AllPhotosC } from '../../components/AllPhotos';
 
 export const AllPhotos = R.compose(
   connect(
-    R.pick([
-      'photos',
-      'router',
-    ]),
+    R.pipe(
+      R.pick([
+        'photos',
+        'photosToShow',
+        'router',
+      ]),
+      ({ photos, photosToShow, ...rest }) => ({
+        ...rest,
+        photos: R.take(photosToShow, photos),
+      })
+    ),
   ),
 )(AllPhotosC);

@@ -3,6 +3,8 @@ import { array, object } from 'prop-types';
 
 import { PhotoItem } from '../../containers/AllPhotos/PhotoItem';
 import { formatDateForURL } from '../../utils/date';
+import { MorePhotosBtn } from '../../containers/MorePhotosBtn';
+
 import './styles.css';
 
 export const AllPhotosC = ({ photos, router: { query } }) => (
@@ -16,6 +18,7 @@ export const AllPhotosC = ({ photos, router: { query } }) => (
         lng={query.lng}
       />
     ))}
+    <MorePhotosBtn />
   </div>
 );
 

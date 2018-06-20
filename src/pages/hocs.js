@@ -33,7 +33,6 @@ export const withFetchAvailableAssets = R.compose(
                 R.map(
                   R.evolve({ date: date => new Date(date) }),
                 ),
-                R.take(5),
                 actions.setPhotos,
               )
             )

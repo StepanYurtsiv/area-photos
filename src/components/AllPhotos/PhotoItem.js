@@ -1,5 +1,5 @@
 import React from 'react';
-import { string, func } from 'prop-types';
+import { string, func, bool } from 'prop-types';
 
 
 export const PhotoItemC = ({ url, onClick, isActive }) => (
@@ -14,6 +14,7 @@ export const PhotoItemC = ({ url, onClick, isActive }) => (
 PhotoItemC.propTypes = {
   url: string,
   onClick: func.isRequired,
+  isActive: bool.isRequired,
 };
 
 PhotoItemC.defaultProps = {

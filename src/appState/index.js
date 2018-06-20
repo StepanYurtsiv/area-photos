@@ -13,12 +13,14 @@ import {
   routerMiddleware,
   routerEnhanacer,
 } from './router';
+import { photosToShowReducer } from './photosToShow';
 
 const rootReducer = combineReducers({
   selectedPointCoords: selectedPointCoordsReducer,
   activePhoto: activePhotoReducer,
   photos: photosReducer,
   router: routerReducer,
+  photosToShow: photosToShowReducer,
 });
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || R.compose;
