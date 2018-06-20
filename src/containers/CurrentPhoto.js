@@ -1,7 +1,8 @@
-import React from 'react';
 import * as R from 'ramda';
 import { compose } from 'recompose';
 import { connect } from 'react-redux';
+
+import { CurrentPhotoC } from '../components/CurrentPhoto';
 
 
 export const CurrentPhoto = compose(
@@ -15,7 +16,4 @@ export const CurrentPhoto = compose(
       )(photos),
     })
   ),
-)(
-  ({ photo: { url = '' } }) =>
-    <img alt="" src={url} />
-);
+)(CurrentPhotoC);

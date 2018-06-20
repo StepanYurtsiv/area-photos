@@ -33,6 +33,9 @@ export const withFetchAvailableAssets = R.compose(
                 R.map(
                   R.evolve({ date: date => new Date(date) }),
                 ),
+                R.sortWith([
+                  R.descend(R.prop('date'))
+                ]),
                 actions.setPhotos,
               )
             )
