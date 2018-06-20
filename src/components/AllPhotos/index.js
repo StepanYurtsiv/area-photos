@@ -7,12 +7,11 @@ import './styles.css';
 
 export const AllPhotosC = ({ photos, router: { query } }) => (
   <div className="all-photos-container">
-    {photos.map(({ date, id, url }) => (
+    {photos.map(photo => (
       <PhotoItem
-        key={date}
-        url={url}
-        date={formatDateForURL(date)}
-        id={id}
+        key={photo.id}
+        {...photo}
+        date={formatDateForURL(photo.date)}
         lat={query.lat}
         lng={query.lng}
       />

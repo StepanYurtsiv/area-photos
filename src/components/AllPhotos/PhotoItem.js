@@ -1,17 +1,19 @@
 import React from 'react';
-import { string } from 'prop-types';
+import { string, func } from 'prop-types';
 
 
-export const PhotoItemC = ({ url }) => (
+export const PhotoItemC = ({ url, onClick, isActive }) => (
   <div className="photo-item-container">
     {url ?
-      <img src={url} alt="item" /> :
+      // eslint-disable-next-line
+      <img onClick={onClick} src={url} alt="item" /> :
       <div className="placeholder">Loading...</div>}
   </div>
 );
 
 PhotoItemC.propTypes = {
   url: string,
+  onClick: func.isRequired,
 };
 
 PhotoItemC.defaultProps = {

@@ -1,14 +1,16 @@
 import * as R from 'ramda';
 import { connect } from 'react-redux';
+import { withProps } from 'recompose';
 
 import { PhotoItemC } from '../../components/AllPhotos/PhotoItem';
 import { callOn } from '../../utils/hocs';
 import { fetchImage } from '../../utils/nasaApi';
 import { setPhotoURL } from '../../appState/photos';
+import { setActivePhoto } from '../../appState/activePhoto';
 
 
 export const PhotoItem = R.compose(
-  connect(null, { setPhotoURL }),
+  connect(R.pick(['activePhoto']), { setPhotoURL, setActivePhoto }),
   callOn('componentDidMount', ({
     date,
     lat,
@@ -24,4 +26,10 @@ export const PhotoItem = R.compose(
         )
       )
   ),
+  withProps(
+    ({ index, activePhoto, ...actions }) => ({
+      onClick: () => actions.setActivePhoto(index),
+      isActive: index === activePhoto,
+    })
+  )
 )(PhotoItemC);
