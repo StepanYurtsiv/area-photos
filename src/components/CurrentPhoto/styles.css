@@ -1,0 +1,14 @@
+.photo-date {
+  color: #fff;
+  text-align: center;
+  line-height: 30px;
+}
+
+.img-container {
+  width: 500px;
+  height: 500px;
+}
+
+.img-container img {
+  width: 500px;
+}

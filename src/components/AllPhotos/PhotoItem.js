@@ -3,11 +3,13 @@ import { string, func, bool } from 'prop-types';
 
 
 export const PhotoItemC = ({ url, onClick, isActive }) => (
-  <div className="photo-item-container">
+  <div
+    className={`photo-item-container ${isActive && 'active-photo'}`}
+  >
     {url ?
       // eslint-disable-next-line
       <img onClick={onClick} src={url} alt="item" /> :
-      <div className="placeholder">Loading...</div>}
+      <div className="placeholder">...</div>}
   </div>
 );
 

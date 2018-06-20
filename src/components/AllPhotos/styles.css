@@ -3,11 +3,25 @@
   overflow-x: auto;
   overflow-y: hidden;
   width: 100%;
+  box-sizing: border-box;
   height: 120px;
+  border-top: 1px solid #fff;
+}
+
+.active-photo {
+  border-top: 3px solid #fff;
 }
 
 .photo-item-container {
   cursor: pointer;
+  border-right: 1px solid #fff;
+  color: #fff;
+}
+
+.photo-item-container .placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .photo-item-container .placeholder,

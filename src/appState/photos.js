@@ -9,6 +9,7 @@ export const setPhotoURL = createAction('SET_PHOTO_URL');
 
 const mapIndexed = R.addIndex(R.map);
 export const photosReducer = handleActions({
+  ROUTER_LOCATION_CHANGED: R.always([]),
   [setPhotos]: (_, { payload }) => mapIndexed(
     (photo, index) => ({
       ...photo,

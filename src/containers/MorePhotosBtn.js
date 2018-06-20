@@ -1,8 +1,8 @@
-import React from 'react';
 import * as R from 'ramda';
 import { mapProps } from 'recompose';
 import { connect } from 'react-redux';
 import { setPhotosToShow } from '../appState/photosToShow';
+import { MorePhotosBtnC } from '../components/MorePhotosBtn';
 
 
 export const MorePhotosBtn = R.compose(
@@ -17,6 +17,4 @@ export const MorePhotosBtn = R.compose(
       ),
     })
   )
-)(({ onClick }) => (
-  <button onClick={onClick}>More</button>
-));
+)(MorePhotosBtnC);

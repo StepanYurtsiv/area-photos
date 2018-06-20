@@ -1,12 +1,15 @@
 import React from 'react';
 import { formatDate } from '../../utils/dates';
 
+import './styles.css';
 
 export const CurrentPhotoC = ({
   photo: { url, date },
 }) => (
   <div>
-    <img alt="" src={url} />
-    {date ? <div>{formatDate(date)}</div> : null}
+    <div className="img-container">
+      <img alt="" src={url} />
+    </div>
+    {date ? <div className="photo-date">{formatDate(date)}</div> : null}
   </div>
 );

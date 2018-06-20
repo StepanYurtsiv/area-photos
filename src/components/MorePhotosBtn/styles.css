@@ -1,0 +1,12 @@
+.more-photos-btn {
+  border: none;
+  color: #fff;
+  background: #000;
+  cursor: pointer;
+  transition: .2s;
+}
+
+.more-photos-btn:hover {
+  color: #000;
+  background: #fff;
+};

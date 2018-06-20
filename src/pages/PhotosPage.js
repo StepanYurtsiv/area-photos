@@ -9,7 +9,7 @@ import './photosPageStyles.css';
 export const PhotosPage = R.compose(
   withFetchAvailableAssets,
 )(() => (
-  <div className="page-container">
+  <div className="page-container photos-page-container">
     <div className="current-photo-container">
       <CurrentPhoto />
     </div>

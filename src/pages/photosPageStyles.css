@@ -1,3 +1,10 @@
 .current-photo-container {
   height: calc(100% - 120px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.photos-page-container {
+  background-color:#000;
 }
