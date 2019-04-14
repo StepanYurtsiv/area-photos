@@ -25,6 +25,9 @@ export const PhotoItem = R.compose(
           url => actions.setPhotoURL({ id, url }),
         )
       )
+      .catch(
+        R.pipe(R.prop('message'), alert)
+      )
   ),
   withProps(
     ({ index, activePhoto, ...actions }) => ({

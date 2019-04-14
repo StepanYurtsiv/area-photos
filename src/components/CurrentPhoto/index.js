@@ -6,6 +6,6 @@ import './styles.css';
 export const CurrentPhotoC = ({
   photo: { url, date },
 }) => ([
-    <img className="curr-photo" alt="" src={url} />,
-    date ? <div className="photo-date">{formatDate(date)}</div> : null
+    <img key={1} className="curr-photo" alt="" src={url} />,
+    date ? <div key={2} className="photo-date">{formatDate(date)}</div> : null
 ]);

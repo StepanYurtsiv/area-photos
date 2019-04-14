@@ -39,6 +39,9 @@ export const withFetchAvailableAssets = R.compose(
                 actions.setPhotos,
               )
             )
+            .catch(
+              R.pipe(R.prop('message'), alert)
+            )
       )(targetPointCoords),
   )
 );
