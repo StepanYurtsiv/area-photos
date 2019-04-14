@@ -2,7 +2,7 @@ import React from 'react';
 import { array, object } from 'prop-types';
 
 import { PhotoItem } from '../../containers/AllPhotos/PhotoItem';
-import { formatDateForURL } from '../../utils/date';
+import { formatDateForURL } from '../../utils/dates';
 import { MorePhotosBtn } from '../../containers/MorePhotosBtn';
 
 import './styles.css';
