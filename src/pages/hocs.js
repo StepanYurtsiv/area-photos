@@ -1,19 +1,26 @@
 import * as R from 'ramda';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
+import { withProps } from 'recompose';
+import { parse } from 'query-string';
 
-import { setPhotos } from '../appState/photos';
-
-import { callOn } from '../utils/hocs';
 import { fetchAvailableAssets } from '../utils/nasaApi';
+import { setPhotos } from '../appState/photos';
+import { callOn } from '../utils/hocs';
 
 
 export const withFetchAvailableAssets = R.compose(
   connect(
-    R.pipe(
-      R.path(['router', 'query']),
-      R.objOf('targetPointCoords'),
-    ),
+    null,
     { setPhotos }
+  ),
+  withRouter,
+  withProps(
+    R.pipe(
+      R.path(['history', 'location', 'search']),
+      parse,
+      R.objOf('targetPointCoords')
+    )
   ),
   callOn(
     'componentDidMount',
@@ -30,6 +37,9 @@ export const withFetchAvailableAssets = R.compose(
             .then(
               R.pipe(
                 R.prop('results'),
+                R.when(R.isNil, () => {
+                  throw new Error('No results for such coords')
+                }),
                 R.map(
                   R.evolve({ date: date => new Date(date) }),
                 ),

@@ -1,7 +1,8 @@
 import * as R from 'ramda';
 import { compose, mapProps } from 'recompose';
 import { connect } from 'react-redux';
-import { push } from 'redux-little-router';
+import { withRouter } from 'react-router-dom';
+import { stringify } from 'query-string';
 
 import { ConfirmPointInfoBoxC } from '../components/ConfirmPointInfoBox';
 import {
@@ -15,20 +16,23 @@ import { fromLatLng } from '../utils/coords';
 export const ConfirmPointInfoBox = compose(
   connect(
     R.pick(['selectedPointCoords']),
-    { setSelectedPointCoords, push }
+    { setSelectedPointCoords }
   ),
+  withRouter,
   renderNothingIf(
     R.complement(R.path(['selectedPointCoords', 'lat'])),
   ),
   mapProps(
-    ({ selectedPointCoords, ...actions }) => ({
+    ({ selectedPointCoords, history, ...actions }) => ({
       position: selectedPointCoords,
       onCancel: () => actions.setSelectedPointCoords({}),
       onConfirm: () =>
-        actions.push({
-          pathname: routesNames.PHOTOS,
-          query: fromLatLng(selectedPointCoords),
-        }),
+        R.pipe(
+          fromLatLng,
+          stringify,
+          query => `${routesNames.PHOTOS}?${query}`,
+          history.push
+        )(selectedPointCoords)
     })
   )
 )(ConfirmPointInfoBoxC);

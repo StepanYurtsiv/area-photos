@@ -1,5 +1,8 @@
 import * as R from 'ramda';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
+import { parse } from 'query-string';
+import { withProps } from 'recompose';
 
 import { AllPhotosC } from '../../components/AllPhotos';
 
@@ -10,7 +13,6 @@ export const AllPhotos = R.compose(
       R.pick([
         'photos',
         'photosToShow',
-        'router',
       ]),
       ({ photos, photosToShow, ...rest }) => ({
         ...rest,
@@ -18,4 +20,8 @@ export const AllPhotos = R.compose(
       })
     ),
   ),
+  withRouter,
+  withProps(props => ({
+    query: parse(props.history.location.search) 
+  }))
 )(AllPhotosC);

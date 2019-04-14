@@ -1,6 +1,6 @@
 import React from 'react';
-import { Fragment } from 'redux-little-router';
 import { Provider } from 'react-redux';
+import { BrowserRouter,  Route } from "react-router-dom";
 
 import { MapPage, PhotosPage } from './pages';
 import { store } from './appState';
@@ -11,15 +11,9 @@ import './globalStyles.css';
 
 export const App = () => (
   <Provider store={store}>
-    <Fragment forRoute="/">
-      <div>
-        <Fragment forRoute={routesNames.MAP}>
-          <MapPage />
-        </Fragment>
-        <Fragment forRoute={routesNames.PHOTOS}>
-          <PhotosPage />
-        </Fragment>
-      </div>
-    </Fragment>
+    <BrowserRouter>
+      <Route path={routesNames.MAP} exact component={MapPage} />
+      <Route path={routesNames.PHOTOS} exact component={PhotosPage} />
+    </BrowserRouter>
   </Provider>
 );

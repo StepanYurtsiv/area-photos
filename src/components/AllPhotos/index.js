@@ -7,7 +7,7 @@ import { MorePhotosBtn } from '../../containers/MorePhotosBtn';
 
 import './styles.css';
 
-export const AllPhotosC = ({ photos, router: { query } }) => (
+export const AllPhotosC = ({ photos, query }) => (
   <div className="all-photos-container">
     {photos.map(photo => (
       <PhotoItem
@@ -24,5 +24,5 @@ export const AllPhotosC = ({ photos, router: { query } }) => (
 
 AllPhotosC.propTypes = {
   photos: array.isRequired,
-  router: object.isRequired,
+  query: object.isRequired,
 };
