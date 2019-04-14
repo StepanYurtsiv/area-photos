@@ -1,11 +1,10 @@
 import * as R from 'ramda';
-import { compose } from 'recompose';
 import { connect } from 'react-redux';
 
 import { CurrentPhotoC } from '../components/CurrentPhoto';
 
 
-export const CurrentPhoto = compose(
+export const CurrentPhoto = R.compose(
   connect(
     ({ photos, activePhoto }) => ({
       photo: R.pipe(
