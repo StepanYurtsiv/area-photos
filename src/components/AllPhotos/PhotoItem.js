@@ -8,7 +8,7 @@ export const PhotoItemC = ({ url, onClick, isActive }) => (
   >
     {url ?
       // eslint-disable-next-line
-      <img onClick={onClick} src={url} alt="item" /> :
+      <img onClick={onClick} src={url} alt="" /> :
       <div className="placeholder">...</div>}
   </div>
 );
