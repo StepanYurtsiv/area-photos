@@ -8,6 +8,8 @@ import { ConfirmPointInfoBoxC } from '../components/ConfirmPointInfoBox';
 import {
   setSelectedPointCoords,
 } from '../appState/selectedPointCoords';
+import { setPhotosToShow } from '../appState/photosToShow';
+import { setPhotos } from '../appState/photos';
 import { renderNothingIf } from '../utils/hocs';
 import { routesNames } from '../utils/constants';
 import { fromLatLng } from '../utils/coords';
@@ -16,7 +18,7 @@ import { fromLatLng } from '../utils/coords';
 export const ConfirmPointInfoBox = compose(
   connect(
     R.pick(['selectedPointCoords']),
-    { setSelectedPointCoords }
+    { setSelectedPointCoords, setPhotos, setPhotosToShow }
   ),
   withRouter,
   renderNothingIf(
@@ -26,13 +28,16 @@ export const ConfirmPointInfoBox = compose(
     ({ selectedPointCoords, history, ...actions }) => ({
       position: selectedPointCoords,
       onCancel: () => actions.setSelectedPointCoords({}),
-      onConfirm: () =>
+      onConfirm: () => {
+        actions.setPhotosToShow(5);
+        actions.setPhotos([]);
         R.pipe(
           fromLatLng,
           stringify,
           query => `${routesNames.PHOTOS}?${query}`,
           history.push
-        )(selectedPointCoords)
+        )(selectedPointCoords);
+      }
     })
   )
 )(ConfirmPointInfoBoxC);
